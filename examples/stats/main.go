@@ -19,7 +19,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"time"
 
@@ -71,10 +70,14 @@ func main() {
 
 	processVideo(ctx)
 
+	log.Println("Flushing explictly")
+	se.Flush()
+
 	// Wait for a duration longer than reporting duration to ensure the stats
 	// library reports the collected data.
-	fmt.Println("Wait longer than the reporting duration...")
-	time.Sleep(1 * time.Minute)
+	log.Println("Wait longer than the reporting duration...")
+	time.Sleep(2 * time.Minute)
+	log.Println("Done waiting")
 }
 
 func processVideo(ctx context.Context) {

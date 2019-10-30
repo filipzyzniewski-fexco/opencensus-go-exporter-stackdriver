@@ -22,6 +22,7 @@ directly to Stackdriver Metrics.
 import (
 	"context"
 	"fmt"
+	"log"
 
 	"github.com/golang/protobuf/proto"
 	"github.com/golang/protobuf/ptypes/any"
@@ -69,6 +70,7 @@ func (se *statsExporter) handleMetricsUpload(metrics []*metricdata.Metric) {
 }
 
 func (se *statsExporter) uploadMetrics(metrics []*metricdata.Metric) error {
+	log.Println("entering statsExporter.uploadMetrics")
 	ctx, cancel := newContextWithTimeout(se.o.Context, se.o.Timeout)
 	defer cancel()
 
